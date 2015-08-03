@@ -10,10 +10,164 @@
   <div class="reveal">
     <div class="slides">
       <section>
-        <h1>This is the first slide</h1>
+        <h1>Testing in JS 101</h1>
       </section>
       <section>
-        <h1>Slide 2</h1>
+        <h2>What is a Test?</h2>
+        <p>Code that executes and then checks other code</p>
+      </section>
+      <section>
+        <h2>Reasons to Test</h2>
+        <ul>
+          <li>Stability</li>
+          <li>Confidence</li>
+          <li>Leads to better code</li>
+          <li>Does not guarantee bug free code</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Types of Tests</h2>
+        <ul>
+          <li>Unit</li>
+          <li>Functional</li>
+          <li>Integration</li>
+          <li>Application</li>
+          <li>System</li>
+        </ul>
+      </section>
+      <section>
+        <h2>What Should I Test?</h2>
+        <ul>
+          <li>Everything</li>
+          <li>min / max values</li>
+          <li>border values</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Four Phases of a Test</h2>
+        <ul>
+          <li>Setup</li>
+          <li>Execution of the SUT</li>
+          <li>Assertion of Results</li>
+          <li>Teardown</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Example</h2>
+        <h5>System Under Test</h5>
+        <pre>
+          <code>
+function pow(number, power) {
+  if (power === 1) {
+    return number;
+  }
+  return number * pow(number, power - 1);
+}
+          </code>
+        </pre>
+        <div class="fragment">
+          <h5>Test</h5>
+          <pre>
+            <code>
+it('should return the number passed for a power of 1', function () {
+  var result = pow (5, 1);
+  expect(result).to.equal(5);
+});
+
+it('should return the calculated power for a number', function () {
+  var result = pow (5, 3);
+  expect(result).to.equal(125);
+});
+            </code>
+          </pre>
+        </div>
+
+      </section>
+      <section>
+        <h2>Example</h2>
+        <h5>System Under Test</h5>
+        <pre>
+          <code>
+function pow(number, power) {
+  if (power === 0) {
+    return 1;
+  }
+  return number * pow(number, power - 1);
+}
+          </code>
+        </pre>
+        <div class="fragment">
+        <h5>Test</h5>
+          <pre>
+            <code>
+it('should return 1 for a power of 0', function () {
+  var result = pow (5, 0);
+  expect(result).to.equal(1);
+});
+            </code>
+          </pre>
+        </div>
+      </section>
+      <section>
+        <h2>Example</h2>
+        <h5>System Under Test</h5>
+        <pre>
+          <code>
+function pow(number, power) {
+  if (power === 0) {
+    return 1;
+  } else if ( power < 0 ) {
+    return pow(number, power + 1) / number;
+  }
+  return number * pow(number, power - 1);
+}
+          </code>
+        </pre>
+        <div  class="fragment">
+          <h5>Test</h5>
+          <pre>
+            <code>
+it('should return the calculated power for a negative number', function () {
+  var result = pow (5, -3);
+  expect(result).to.equal(0.008);
+});
+            </code>
+          </pre>
+        </div>
+      </section>
+      <section>
+        <h2>Testing Best Practices</h2>
+        <ul>
+          <li>Contains no logic</li>
+          <li>Idempotent</li>
+          <li>Independent</li>
+          <li>Clear and Concise</li>
+          <li>Treat Tests as First Class Code</li>
+          <li>Write Tests for how the code will be used</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Code Coverage</h2>
+        <p>Shows what code has be exercised and usually how many times.</p>
+      </section>
+      <section>
+        <h2>Tools for Testing in JS</h2>
+        <ul>
+          <li>Test Runners
+            <ul>
+              <li>QUnit</li>
+              <li>Jasmine</li>
+              <li>Mocha</li>
+            </ul>
+          </li>
+          <li>
+            Testing Tools
+            <ul>
+              <li>Chai</li>
+              <li>SinonJS</li>
+            </ul>
+          </li>
+        </ul>
       </section>
     </div>
   </div>
